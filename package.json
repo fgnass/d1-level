@@ -1,6 +1,6 @@
 {
   "name": "d1-level",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An abstract-level database backed by Cloudflare D1",
   "type": "module",
   "main": "./dist/src/index.js",
@@ -31,6 +31,6 @@
     "vitest": "1.5.x"
   },
   "dependencies": {
-    "abstract-level": "^2.0.0"
+    "abstract-level": "^1.0.0"
   }
 }

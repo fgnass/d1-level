@@ -2,7 +2,10 @@
 
 An [`abstract-level`](https://github.com/Level/abstract-level) database backed by [Cloudflare D1](https://developers.cloudflare.com/d1/).
 
-✅ The implementation passes all 1000+ tests of `abstract-level/test` test suite.
+✅ The implementation passes all 847 tests of `abstract-level/test` test suite.
+
+> [!NOTE]
+> You are viewing the legacy version that is compatible with abstract-level 1.x.
 
 ### Usage
 
