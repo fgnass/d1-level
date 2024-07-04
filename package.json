@@ -1,7 +1,7 @@
 {
   "name": "d1-level",
   "version": "1.0.0",
-  "description": "",
+  "description": "An abstract-level database backed by Cloudflare D1",
   "type": "module",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -18,7 +18,7 @@
     "sqlite",
     "d1"
   ],
-  "author": "",
+  "author": "Felix Gnass <fgnass@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.8",
