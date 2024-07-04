@@ -1,6 +1,6 @@
 {
   "name": "d1-level",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "An abstract-level database backed by Cloudflare D1",
   "type": "module",
   "main": "./dist/src/index.js",
