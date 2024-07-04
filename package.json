@@ -1,0 +1,33 @@
+{
+  "name": "d1-level",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "scripts": {
+    "test": "vitest",
+    "build": "tsc"
+  },
+  "keywords": [
+    "level",
+    "leveldb",
+    "leveldown",
+    "abstract-level",
+    "cloudflare",
+    "sqlite",
+    "d1"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.4.8",
+    "@cloudflare/workers-types": "^4.20240620.0",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
+    "typescript": "^5.5.3",
+    "vitest": "1.5.x"
+  },
+  "dependencies": {
+    "abstract-level": "^2.0.0"
+  }
+}

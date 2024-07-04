@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "rootDirs": ["src", "test"],
+    "outDir": "dist",
+    "declaration": true,
+    "target": "ESNext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "types": ["@cloudflare/workers-types", "@cloudflare/vitest-pool-workers"]
+  }
+}
