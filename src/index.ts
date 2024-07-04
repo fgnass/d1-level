@@ -10,13 +10,17 @@ import {
 import { RangeOptions } from "abstract-level/types/interfaces";
 
 type BatchOperation = AbstractBatchOperation<D1Level, string, string>;
-type D1LevelOptions = AbstractDatabaseOptions<string, string> & {
+type D1LevelOptions<K, V> = AbstractDatabaseOptions<K, V> & {
   name?: string;
 };
 
-export class D1Level extends AbstractLevel<string> {
+export class D1Level<K = string, V = string> extends AbstractLevel<
+  string,
+  K,
+  V
+> {
   private name: string;
-  constructor(private d1: D1Database, options: D1LevelOptions = {}) {
+  constructor(private d1: D1Database, options: D1LevelOptions<K, V> = {}) {
     const { name = "kv", ...abstractOptions } = options;
     const encodings = { utf8: true, json: false };
     super(
@@ -153,12 +157,12 @@ export class D1Level extends AbstractLevel<string> {
     }
   }
 
-  _iterator(options: IteratorOptions) {
-    return new D1Iterator(this, options, this.d1, this.name);
+  _iterator(options: AbstractIteratorOptions<K, V>) {
+    return new D1Iterator<K, V>(this, options, this.d1, this.name);
   }
 }
 
-function rangeQuery(options: RangeOptions<string> & { order?: boolean }) {
+function rangeQuery(options: RangeOptions<any> & { order?: boolean }) {
   const { gt, gte, lt, lte, order, reverse, limit } = options;
   const params: Array<string | number> = [];
   let where = "";
@@ -193,14 +197,12 @@ function rangeQuery(options: RangeOptions<string> & { order?: boolean }) {
   return { where, params };
 }
 
-type IteratorOptions = AbstractIteratorOptions<string, string>;
-
-class D1Iterator extends AbstractIterator<D1Level, string, string> {
+class D1Iterator<K, V> extends AbstractIterator<D1Level<K, V>, K, V> {
   private result?: string[][];
   private index = 0;
   constructor(
-    db: D1Level,
-    private options: IteratorOptions,
+    db: D1Level<K, V>,
+    private options: AbstractIteratorOptions<K, V>,
     private d1: D1Database,
     private name: string
   ) {

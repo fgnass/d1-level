@@ -15,6 +15,22 @@ describe("D1Level", async () => {
     expect(await level.get("value")).toBe(undefined);
   });
 
+  it("puts and gets json values", async () => {
+    const level = new D1Level<string, string | number | object>(env.D1, {
+      valueEncoding: "json",
+    });
+    await level.open();
+    await level.put("string", "Hello World!");
+    expect(await level.get("string")).toBe("Hello World!");
+    await level.put("number", 123);
+    expect(await level.get("number")).toBe(123);
+    await level.put("obj", { hello: "world", year: 2024 });
+    expect(await level.get("obj")).toStrictEqual({
+      hello: "world",
+      year: 2024,
+    });
+  });
+
   // The bundled version is created in setup.js:
   const { suite } = await import("./" + "suite.bundle.js");
   suite(it, assert, env);
