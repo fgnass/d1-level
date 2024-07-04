@@ -41,8 +41,11 @@ export class D1Level<K = string, V = string> extends AbstractLevel<
   K,
   V
 > {
-  private name: string;
-  constructor(private d1: D1Database, options: D1LevelOptions<K, V> = {}) {
+  public name: string;
+  constructor(
+    public d1: D1Database | null,
+    options: D1LevelOptions<K, V> = {}
+  ) {
     const { name = "kv", ...abstractOptions } = options;
     const encodings = { utf8: true, json: false };
     super(
@@ -66,6 +69,9 @@ export class D1Level<K = string, V = string> extends AbstractLevel<
   ) {
     return execAsync(callback, async () => {
       if (!passive) {
+        if (!this.d1) {
+          throw new LevelError("D1 database not provided", "LEVEL_IO_ERROR");
+        }
         if (createIfMissing) {
           await this.d1.exec(
             `CREATE TABLE IF NOT EXISTS ${this.name} (key TEXT PRIMARY KEY, value TEXT)`
