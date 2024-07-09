@@ -8,6 +8,21 @@
   "files": [
     "dist/src"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./remote": {
+      "import": "./dist/src/remote.js",
+      "types": "./dist/src/remote.d.ts"
+    },
+    "./conditional": {
+      "node": "./dist/src/shim.js",
+      "default": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    }
+  },
   "scripts": {
     "test": "vitest",
     "build": "tsc"
@@ -26,6 +41,7 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.8",
     "@cloudflare/workers-types": "^4.20240620.0",
+    "dotenv": "^16.4.5",
     "esbuild-plugin-polyfill-node": "^0.3.0",
     "typescript": "^5.5.3",
     "vitest": "1.5.x"

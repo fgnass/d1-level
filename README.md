@@ -9,6 +9,8 @@ An [`abstract-level`](https://github.com/Level/abstract-level) database backed b
 This is how you would use it inside a Cloudflare worker:
 
 ```ts
+import { D1Level } from "d1-level";
+
 export interface Env {
   D1: D1Database;
 }
@@ -22,6 +24,28 @@ export default {
     return new Response(`Hello ${value}!`);
   },
 } satisfies ExportedHandler<Env>;
+```
+
+## Remote D1 support
+
+The package also supports remote databases via the [D1 REST API](https://developers.cloudflare.com/api/operations/cloudflare-d1-query-database):
+
+```ts
+import { RemoteD1Level } from "d1-level/remote";
+
+const level = new RemoteD1Level({
+  accountId: "1234",
+  databaseId: "5678",
+  apiToken: "xxxx",
+});
+```
+
+You can also leverage import conditions to write isomorphic code that uses the REST API when running in Node and the regular API otherwise:
+
+```ts
+import { D1Level } from "d1-level/conditional";
+
+// D1Level will be RemoteD1Level when imported in Node and regular D1Level in all other environments.
 ```
 
 ## License
