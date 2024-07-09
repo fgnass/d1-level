@@ -45,7 +45,7 @@ export class D1Level<K = string, V = string> extends AbstractLevel<
 > {
   public name: string;
   constructor(
-    public d1: D1Database | null,
+    public d1: D1Database | null = null,
     options: D1LevelOptions<K, V> = {}
   ) {
     const { name = "kv", ...abstractOptions } = options;

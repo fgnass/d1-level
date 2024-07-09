@@ -11,8 +11,16 @@ interface D1Endpoint {
 export { D1Level };
 
 export class RemoteD1Level extends D1Level {
-  constructor(endpoint: D1Endpoint) {
-    super(new RemoteD1(endpoint));
+  constructor(endpoint?: D1Endpoint | null) {
+    super(
+      new RemoteD1(
+        endpoint ?? {
+          accountId: process.env.D1_ACCOUNT_ID,
+          databaseId: process.env.D1_DATABASE_ID,
+          apiToken: process.env.D1_API_TOKEN,
+        }
+      )
+    );
   }
 }
 
