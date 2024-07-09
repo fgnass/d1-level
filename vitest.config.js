@@ -3,6 +3,11 @@ import { defineWorkersConfig } from "@cloudflare/vitest-pool-workers/config";
 
 const { accountId, databaseId, apiToken } = process.env;
 
+const bindings =
+  accountId && databaseId && apiToken
+    ? { accountId, databaseId, apiToken }
+    : undefined;
+
 export default defineWorkersConfig({
   test: {
     globalSetup: ["./test/setup.js"],
@@ -13,11 +18,7 @@ export default defineWorkersConfig({
         isolatedStorage: false,
         wrangler: { configPath: "./wrangler.toml" },
         miniflare: {
-          bindings: {
-            accountId,
-            databaseId,
-            apiToken,
-          },
+          bindings,
           d1Databases: ["D1"],
         },
       },
