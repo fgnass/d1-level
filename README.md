@@ -36,6 +36,12 @@ The package also supports remote databases via the [D1 REST API](https://develop
 ```ts
 import { RemoteD1Level } from "d1-level/remote";
 
+const level = new RemoteD1Level();
+```
+
+By default the `D1_ACCOUNT_ID`, `D1_DATABASE_ID` and `D1_API_TOKEN` environment variables are used. You can also pass these options to the constructor:
+
+```ts
 const level = new RemoteD1Level({
   accountId: "1234",
   databaseId: "5678",
