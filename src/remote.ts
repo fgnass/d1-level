@@ -108,7 +108,8 @@ class RestPreparedStatement implements D1PreparedStatement {
   async first(colName?: string) {
     const all = await this.all();
     const row = all.results[0];
-    return colName ? row?.[colName] : row;
+    const value = colName ? row?.[colName] : row;
+    return value ?? null;
   }
 
   async all<T = Record<string, unknown>>(): Promise<D1Result<T>> {
