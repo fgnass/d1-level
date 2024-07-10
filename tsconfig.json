@@ -4,7 +4,7 @@
     "outDir": "dist",
     "declaration": true,
     "target": "ESNext",
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "skipLibCheck": true,
     "types": ["@cloudflare/workers-types", "@cloudflare/vitest-pool-workers"]
